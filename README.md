@@ -10,7 +10,7 @@
 docker build -t pi-agent .
 ```
 
-GitHub Actions 工作流位于 `.github/workflows/docker.yml`：只有推送版本标签（如 `v1.0.0`）时才会构建并推送名为 `pi-agent` 的镜像到 GitHub Container Registry（GHCR），镜像标签与 Git tag 一致。
+GitHub Actions 工作流位于 `.github/workflows/docker.yml`：只有推送版本标签（如 `v1.0.0`）时才会构建并推送名为 `pi-agent` 的镜像到 GitHub Container Registry（GHCR），镜像标签与 Git tag 一致。镜像同时支持 `linux/amd64` 和 `linux/arm64`；Docker 会根据运行设备自动选择对应架构。
 
 推送版本标签后，可使用对应标签拉取镜像（将 `<owner>` 替换成 GitHub 用户名或组织名）：
 
