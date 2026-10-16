@@ -1,6 +1,6 @@
 # pi-agent Docker 镜像
 
-镜像基于 Node.js 22 Debian slim，安装 Pi coding agent 和常用命令行工具：`git`、`curl`、`ripgrep`、`fd`、`fzf`、`jq`、`tree`、`vim`、Python 3，以及编译工具链等。容器启动时会检查 `node` 用户的 Pi 配置；若尚未安装 `pi-web-ui`，则先自动安装，然后通过 `pi /webui` 启动 Pi Web UI。
+镜像基于 Node.js 22 Debian slim，安装 Pi coding agent 和常用命令行工具：`git`、`curl`、`ripgrep`、`fd`、`fzf`、`jq`、`tree`、`vim`、Python 3，以及编译工具链等。容器启动时会检查 `node` 用户的 Pi 配置；若尚未安装 `pi-web-ui`，则先自动安装，然后通过 `pi "/webui start --no-browser"` 启动 Pi Web UI（容器内不尝试打开浏览器）。
 
 ## 构建
 
@@ -20,7 +20,7 @@ docker pull ghcr.io/<owner>/pi-agent:v1.0.0
 
 ## 启动交互会话
 
-在项目目录运行，挂载当前目录作为工作区，并使用 Docker 命名卷持久化 Pi 配置。首次启动会自动安装 `pi-web-ui`，随后执行 `pi /webui`；后续启动检测到已安装后会跳过安装并直接执行 `pi /webui`：
+在项目目录运行，挂载当前目录作为工作区，并使用 Docker 命名卷持久化 Pi 配置。首次启动会自动安装 `pi-web-ui`，随后执行 `pi "/webui start --no-browser"`；后续启动检测到已安装后会跳过安装并直接执行该命令：
 
 ```bash
 docker run --rm -it \
