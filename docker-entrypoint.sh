@@ -16,9 +16,9 @@ else
   echo "[pi-agent] pi-web-ui 已安装，跳过安装。"
 fi
 
-# 默认启动时发送 /webui 命令；显式传入参数时按用户指定内容启动 Pi。
+# 将完整斜杠命令作为 Pi 的初始输入；webui 扩展要求 start 动作后再接选项。
 if [ "$#" -eq 0 ]; then
-  exec pi /webui
+  exec pi "/webui start --no-browser"
 fi
 
 exec pi "$@"
